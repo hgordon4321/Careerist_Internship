@@ -6,8 +6,9 @@ def browser_init(context):
     """
     :param context: Behave context
     """
-    context.driver = webdriver.Chrome()
-    # context.browser = webdriver.Safari()
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    context.driver = webdriver.Chrome(chrome_options=options)
     # context.browser = webdriver.Firefox()
 
     context.driver.maximize_window()
