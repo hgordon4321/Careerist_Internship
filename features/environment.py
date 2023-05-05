@@ -7,9 +7,17 @@ def browser_init(context):
     :param context: Behave context
     """
     # Chrome Setup
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('headless')
+    # context.driver = webdriver.Chrome(chrome_options=options)
+
+    # Chrome mobile emulation setup
+    mobile_emulation = {"deviceName": "Nexus 5"}
     options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    context.driver = webdriver.Chrome(chrome_options=options)
+    options.add_experimental_option("mobileEmulation", mobile_emulation)
+    context.driver = webdriver.Remote(command_executor='http://127.0.0.1:4444/wd/hub',
+                                      desired_capabilities=options.to_capabilities())
+
 
     # Firefox setup
     # options = webdriver.FirefoxOptions()
