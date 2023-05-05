@@ -7,9 +7,9 @@ def browser_init(context):
     :param context: Behave context
     """
     # Chrome Setup
-    # options = webdriver.ChromeOptions()
-    # options.add_argument('headless')
-    # context.drive                                                                                                                                                                                                                                                                                                                                     r = webdriver.Chrome(chrome_options=options)
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    context.driver = webdriver.Chrome(chrome_options=options)
 
     # Firefox setup
     # options = webdriver.FirefoxOptions()
@@ -17,18 +17,20 @@ def browser_init(context):
     # options.add_argument('--headless')
     # context.driver = webdriver.Firefox(options=options)
 
-    desired_cap = {
-        'browser': 'chrome',
-        'browser_version': '89',
-        'os': 'Windows',
-        'os_version': '10'
-        #'name': test_name
+#Browserstack setup
+    # desired_cap = {
+    #     'browser': 'chrome',
+    #     'browser_version': '89',
+    #     'os': 'Windows',
+    #     'os_version': '10'
+    #     #'name': test_name
+    #
+    # }
+    # bs_user = 'henrygordon_TluWsD'
+    # bs_key = 'Niypj57ZKysF2jWf5PG9'
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
-    }
-    bs_user = 'henrygordon_TluWsD'
-    bs_key = 'Niypj57ZKysF2jWf5PG9'
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
